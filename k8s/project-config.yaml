@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: project-config
+data:
+  REACT_APP_FLASK_HOST: "flaskapp-service"
+  REACT_APP_FLASK_PORT: "3000"

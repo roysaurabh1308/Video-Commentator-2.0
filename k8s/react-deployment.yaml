@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reactapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: reactapp
+  template:
+    metadata:
+      labels:
+        app: reactapp
+    spec:
+      containers:
+      - name: reactapp
+        image: rohanpatidar18/reactapp:09 
+        env:
+          - name: REACT_APP_FLASK_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: project-config
+                key: REACT_APP_FLASK_HOST
+          - name: REACT_APP_FLASK_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: project-config
+                key: REACT_APP_FLASK_PORT
+        ports:
+        - containerPort: 5000  
